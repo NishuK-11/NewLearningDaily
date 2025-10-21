@@ -1,0 +1,50 @@
+query ExampleQuery {
+  users {
+    email
+    firstName
+    lastName
+  }
+}
+
+
+query getUserById($userid:ID!){
+  user(id:$userid){
+    id
+    firstName
+    lastName
+    email
+  }
+}
+
+as 
+{
+  "userid": "5778"
+}
+
+--------------------------------
+query getQuoteBUser{
+  iquote(by:"5778"){
+    name
+  }
+}
+
+query getQuoteByUser($quoteby:ID!){
+  iquote(by:$quoteby){
+    name
+    by
+  }
+}
+as 
+{
+  "quoteby": "Dalai Lama"
+}
+----------------------
+query getDetailsByQuote($byquote:String!){
+  byquote(name: $byquote) {
+    name
+  }
+}
+
+{
+  "byquote": "The purpose of our lives is to be happy."
+} as json
