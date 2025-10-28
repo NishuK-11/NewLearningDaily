@@ -1,0 +1,68 @@
+Admin
+1. all routes can be accessed.
+2. admin can perform CRUD operation on permissions.
+3. crud on users with roles(sub_admin,editor,user) and permission.
+4. admin can add/delete/update the permission to all sections(user permission,post,categories,comments,likes).
+5. crud on post,categories,comments,likes.
+
+
+Sub-Admin
+1. all routes can be accessed but not admin routes
+2. admin can perform CRUD operation on permissions of admin.
+3. crud on users with roles(editor,user) but not itself.
+4. admin can add/delete/update the permission to all sections(user permission,post,categories,comments,likes).
+5. crud on post,categories,comments,likes if permission from admin.
+
+
+editor
+1. editor can access all routes but not the admin and sub admin routes.
+2. the editor can perform crud on post,categories,comments,and likes if he has permission from the admin or sub admin user.
+
+
+user
+1. user can register and login
+2. users can see the post.
+3. comments and likes are default enabled for normal users, but the admin and sub-admin can block their comments and like features.
+
+
+user_id:ObjectId('khgiuhu....')
+permissions:[
+    {
+        permission_name:'user',
+        permission_value:[0,1,2,3]   //0->create, 1->read, 2->edit  3->delete
+    },
+    {
+        permission_name:'post',
+        permission_value:[0,1,2]  //0->create,  1-> read, 2->edit
+    },
+    {
+        permission_name:'category',
+        permission_value:[0,2]  //0->create, 2->edit
+    }
+
+]
+
+agr user ne email galat dala , error collection hoga like:-
+{
+  "success": false,
+  "msg": "Validation Errors",
+  "errors": [
+    {
+      "type": "field",
+      "msg": "Please include a valid email",
+      "path": "email",
+      "location": "body"
+    }
+  ]
+}, 
+agr name,param,password sbme koi na koi dikkat hai to
+{
+  "success": false,
+  "msg": "Validation Errors",
+  "errors": [
+    { "msg": "Name is required", "param": "name" },
+    { "msg": "Please include a valid email", "param": "email" },
+    { "msg": "Password is required", "param": "password" }
+  ]
+}
+
