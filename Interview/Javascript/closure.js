@@ -7,6 +7,14 @@
 // console.log(increment());
 // console.log(increment());
 // console.log(increment());
+// console.log(count); //3
+
+// //ab yeh jo count variable hai yeh global scope me hai, iska matlab hai ki hum isko kahi se bhi access kr skte h, aur iski value ko modify bhi kr skte h. 
+// //for example:
+// count = 10; //global variable ki value modify kr di
+// console.log(increment()); //11
+
+
 
 //hmlog chahte hai count bs increment ke andar hi rhe(count ko koi doosra part modify nhi kr skta), bahar phir se uski value 0 hi ho jaye. isko bolte hai encapsulation. iske liye hum closure ka use karte hai.
 function makeIncrementer(){
@@ -26,6 +34,7 @@ const incrementer = makeIncrementer();
 console.log(incrementer());
 console.log(incrementer());
 console.log(incrementer());
+console.log(count); //error: count is not defined
 //ab count variable sirf increment function ke andar hi accessible hai, bahar se koi access nhi kr skta.
 // 🔹 Step 2: Closure kya karta hai?
 // Closure ka matlab hai:
@@ -34,26 +43,26 @@ console.log(incrementer());
 
 
 //Memoization 
-function memoizedAdd(){
-    let cache = {};
-    return function(value){
-        if(value in cache){
-            console.log('Fetching from cache');
-            return cache[value]; //30
-        }
-        else{
-            console.log('Calculating result');
-            let result = value + 20;
-            cache[value] = result; //10->30 
-            return result;
-        }
-    }
-}
-const add = memoizedAdd();
-console.log(add(10)); //30
-console.log(add(10));
-console.log(add(20));
-console.log(add(20));
+// function memoizedAdd(){
+//     let cache = {};
+//     return function(value){
+//         if(value in cache){
+//             console.log('Fetching from cache');
+//             return cache[value]; //30
+//         }
+//         else{
+//             console.log('Calculating result');
+//             let result = value + 20;
+//             cache[value] = result; //10->30 
+//             return result;
+//         }
+//     }
+// }
+// const add = memoizedAdd();
+// console.log(add(10)); //30
+// console.log(add(10));
+// console.log(add(20));
+// console.log(add(20));
 
 // Q1️⃣
 
@@ -61,19 +70,19 @@ console.log(add(20));
 // (b) Function jo apne parent scope ke variable ko yaad rakhta hai
 
 
-function createCounter() {
-  let count = 0;
-  return function() {
-    return ++count;
-  }
-}
+// function createCounter() {
+//   let count = 0;
+//   return function() {
+//     return ++count;
+//   }
+// }
 
-const c1 = createCounter();
-const c2 = createCounter();
+// const c1 = createCounter();
+// const c2 = createCounter();
 
-console.log(c1());
-console.log(c1());
-console.log(c2());
+// console.log(c1());
+// console.log(c1());
+// console.log(c2());
 
 // 🔹 Step 1: const c1 = createCounter();
 
