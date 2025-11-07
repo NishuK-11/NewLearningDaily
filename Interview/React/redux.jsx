@@ -18,3 +18,5 @@ dispatch() is used to send actions to the redux store. an action describes what 
 getState()
 getstate() retrieves the current state of the redux store. 
 this is useful for accessing the state after it has been updated or to monitor changes. 
+getState()
+//it is useful
