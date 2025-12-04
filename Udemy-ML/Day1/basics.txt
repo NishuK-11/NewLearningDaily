@@ -1,0 +1,11 @@
+list
+tuple
+dictionary
+set
+
+
+1. list :-
+list ls[];
+for i in range(1,21):
+    ls.append(i)
+print ls

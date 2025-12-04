@@ -1,0 +1,15 @@
+text generation before llms:-
+1. statistical models-> n-1 index ko dekhke aage ka prediction bnata tha
+2. recurring neurals network(RNN) -> bhut sari index ki memory rakhta tha(but limited context)
+3. attention is all you need(google published paper)-> pridct next word using full context of previous happenings.
+LLMs :- chatgpt(openai),anthropic,llama,gemini
+
+    Context:-
+    user input,instruction,additional info, message history
+Context window:-
+the maximum number of tokens an llm can read and use at the same time. 
+
+gpt 3 -> 2048 tokens
+gpt 4.1=> 1,047,576 tokens
+
+inference-> the process where an llm takes text and generates an output based on what it has learned. 
