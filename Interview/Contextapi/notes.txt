@@ -1,0 +1,153 @@
+src/
+ └─ context/
+      ├─ UserContext.jsx
+      ├─ UserContextProvider.jsx
+      ├─ ProductContext.jsx
+      └─ ProductContextProvider.jsx
+ └─ components/
+      ├─ Navbar.jsx
+      ├─ ProductList.jsx
+      └─ ProductCard.jsx
+ └─ App.jsx
+ main.jsx
+
+
+1) UserContext.jsx
+import { createContext } from "react";
+
+const UserContext = createContext();
+export default UserContext;
+
+2) UserContextProvider.jsx
+
+(ye tum already bana chuke ho—correct part yahan hai)
+
+import React from "react";
+import UserContext from "./UserContext";
+
+const UserContextProvider = ({ children }) => {
+  const [user, setUser] = React.useState(null);
+
+  return (
+    <UserContext.Provider value={{ user, setUser }}>
+      {children}
+    </UserContext.Provider>
+  );
+};
+
+export default UserContextProvider;
+
+🟩 Now Create Product Context
+🟦 3) ProductContext.jsx
+import { createContext } from "react";
+
+const ProductContext = createContext();
+export default ProductContext;
+
+🟦 4) ProductContextProvider.jsx
+import React from "react";
+import ProductContext from "./ProductContext";
+
+const ProductContextProvider = ({ children }) => {
+  const [products, setProducts] = React.useState([
+    { id: 1, name: "Coffee", price: 120 },
+    { id: 2, name: "Tea", price: 50 },
+  ]);
+
+  return (
+    <ProductContext.Provider value={{ products, setProducts }}>
+      {children}
+    </ProductContext.Provider>
+  );
+};
+
+export default ProductContextProvider;
+
+🟦 5) Wrap Both Providers in App.jsx
+
+Important: App file me dono providers ko global wrap kar do.
+
+import UserContextProvider from "./context/UserContextProvider";
+import ProductContextProvider from "./context/ProductContextProvider";
+import Navbar from "./components/Navbar";
+import ProductList from "./components/ProductList";
+
+function App() {
+  return (
+    <UserContextProvider>
+      <ProductContextProvider>
+        <Navbar />
+        <ProductList />
+      </ProductContextProvider>
+    </UserContextProvider>
+  );
+}
+
+export default App;
+
+🟦 6) Navbar.jsx (consume UserContext)
+import { useContext } from "react";
+import UserContext from "../context/UserContext";
+
+const Navbar = () => {
+  const { user, setUser } = useContext(UserContext);
+
+  return (
+    <div style={{ padding: 10, background: "#eee" }}>
+      <h3>Navbar</h3>
+      <p>User: {user ? user.name : "Not Logged In"}</p>
+
+      <button
+        onClick={() => setUser({ name: "Nishu", email: "nishu@mail.com" })}
+      >
+        Login
+      </button>
+
+      <button onClick={() => setUser(null)}>Logout</button>
+    </div>
+  );
+};
+
+export default Navbar;
+
+🟦 7) ProductList.jsx (consume ProductContext)
+import { useContext } from "react";
+import ProductContext from "../context/ProductContext";
+import ProductCard from "./ProductCard";
+
+const ProductList = () => {
+  const { products } = useContext(ProductContext);
+
+  return (
+    <div>
+      <h2>Products:</h2>
+      {products.map((item) => (
+        <ProductCard key={item.id} item={item} />
+      ))}
+    </div>
+  );
+};
+
+export default ProductList;
+
+🟦 8) ProductCard.jsx (use ProductContext + show product)
+import { useContext } from "react";
+import ProductContext from "../context/ProductContext";
+
+const ProductCard = ({ item }) => {
+  const { setProducts } = useContext(ProductContext);
+
+  const deleteProduct = () => {
+    setProducts((prev) => prev.filter((p) => p.id !== item.id));
+  };
+
+  return (
+    <div style={{ margin: "10px", padding: "10px", border: "1px solid black" }}>
+      <h4>{item.name}</h4>
+      <p>Price: ₹{item.price}</p>
+      <button onClick={deleteProduct}>Delete</button>
+    </div>
+  );
+};
+
+export default ProductCard;
