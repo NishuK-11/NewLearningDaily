@@ -1,3 +1,4 @@
+const mongoose = require('mongoose');
 
 const permissionSchema = new mongoose.Schema({
    user_id:{
