@@ -66,3 +66,10 @@ agr name,param,password sbme koi na koi dikkat hai to
   ]
 }
 
+
+
+token generate krwate wqt user(email,password) ke saath ek secret key dena hota hai
+jwt.sign(user,secret ,{expiresIn:"2h"})
+
+jo login kr leta h :- uska hmlog token generate krwa lete h, kkoi bhi route mei phir access dene k liye pehle token verify krwa lete h ki uke paas h ki nhi 
+isis ko middleware bolte h (auth middleware)
