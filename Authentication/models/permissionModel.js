@@ -13,7 +13,6 @@ const permissionSchema = new mongoose.Schema({
    is_default:{
     type:Number,
     default:0 //0->not default(admin ne kuchh set nhi kiya), 1-> default
-
    }
 })
 

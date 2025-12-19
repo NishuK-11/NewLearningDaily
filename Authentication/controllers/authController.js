@@ -104,7 +104,8 @@ const loginUser = async (req, res) => {
     // 5️⃣ Generate token (SAFE payload)
     const accessToken = generateAccessToken({
       id: userData._id,
-      email: userData.email
+      email: userData.email,
+      role: userData.role
     });
 
     // 6️⃣ Success response
@@ -116,7 +117,8 @@ const loginUser = async (req, res) => {
       data: {
         id: userData._id,
         name: userData.name,
-        email: userData.email
+        email: userData.email,
+        role: userData.role 
       }
     });
 
