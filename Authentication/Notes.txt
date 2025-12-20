@@ -75,3 +75,19 @@ jo login kr leta h :- uska hmlog token generate krwa lete h, kkoi bhi route mei 
 isis ko middleware bolte h (auth middleware)
 
 
+update krne k liye -> ho skta h update hua ho ya nhi hua ho 
+var obj = {
+  title,
+  description
+}
+if(req.body.categories){
+  obj.categories = req.body.categories;
+}
+
+const updatedPosts = await Post.findByIdAndUpdate({_id:id},{
+  $set:obj
+},{new:true})
+
+
+Ek post multiple categories me ho sakti hai.
+Ek category ke andar multiple posts ho sakti hain

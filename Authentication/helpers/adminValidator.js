@@ -33,3 +33,17 @@ exports.postCreateValidator = [
   check('description', 'Description is required').not().isEmpty()
 
 ];
+exports.postDeleteValidator = [
+  check('id', 'ID is required').not().isEmpty()
+];
+
+exports.postUpdateValidator = [
+    check('title', 'Title is required').not().isEmpty(),
+    check('id', 'ID is required').not().isEmpty(),
+    check('description', 'Description is required').not().isEmpty(),
+];
+
+exports.storeRoleValidator = [
+    check('role_name', 'role_name is required').not().isEmpty(),
+    check('value', 'value is required').not().isEmpty()
+];
